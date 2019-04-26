@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 const data = require('./data.js');
-const recipeSchema = require('./schemas/reciepeSchema');
+const reciepeSchema = require('./schemas/reciepeSchema');
 
-mongoose.connect('mongodb://localhost/recipeApp')
+mongoose.connect('mongodb://localhost/recipedb')
   .then(() => {
     console.log('Connected to Mongo!');
   }).catch(err => {
@@ -11,7 +11,7 @@ mongoose.connect('mongodb://localhost/recipeApp')
   });
 
 
-  const Reciepemodel = mongoose.model('Reciepe', recipeSchema);
+  const Reciepemodel = mongoose.model('Ingredients', reciepeSchema);  // Reciepe is the name of the collection
 
 //ITERATION 2 'RECIEPE'
 
@@ -34,14 +34,14 @@ mongoose.connect('mongodb://localhost/recipeApp')
 
 //ITERATION 3
 
-// Reciepemodel.insertMany(data)
-// .then( (result) => {
-//   console.log(result);
-//   result.forEach( (ele) => {
-//     console.log(ele.title);
-//   })
-// })
-// .catch( (err) => console.log(err));
+Reciepemodel.insertMany(data)
+.then( (result) => {
+  console.log(result);
+  result.forEach( (ele) => {
+    console.log(ele.title);
+  })
+})
+.catch( (err) => console.log(err));
 
 //ITERATION 4
 
@@ -53,7 +53,15 @@ mongoose.connect('mongodb://localhost/recipeApp')
 Reciepemodel.find({title: 'Rigatoni alla Genovese'})
 .then((result) => {
   console.log(result)
-  mongoose.disconnect();
+  mongoose.disconnect();  // can close after each query
+})
+.catch( (err) => console.log(err));
+
+
+Reciepemodel.find({title: 'Orange and Milk-Braised Pork Carnitas'})
+.then((result) => {
+  console.log(result)
+  console.log('hi we found something')
 })
 .catch( (err) => console.log(err));
 

@@ -8,7 +8,7 @@ const reciepeSchema = new Schema( {
   level: {type: String, enums: [{type: String, enum: ['Easy Peasy', 'Amateur Chef', 'UltraPro Chef']}]},
   ingredients: {type: []},
   cousine: {type: String, require: true},
-  dishType: {type: [], enums: [{type: String, enum: ['Breakfast', 'Dish', 'Snack', 'Drink', 'Dessert', 'Other']}]}, //cheeck!
+  dishType: {type: [String], enum: ['Breakfast', 'Dish', 'Snack', 'Drink', 'Dessert', 'Other']}, //cheeck!
   image: {type: String, default:'https://images.media-allrecipes.com/images/75131.jpg.'},
   duration: {type: Number, minimum: 0},
   creator: {type: String},
